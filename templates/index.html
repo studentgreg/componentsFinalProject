@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="h3 mb-3">Search Books</h1>
+<p class="text-muted">TODO: describe what your app does and which API it uses.</p>
+
+<div class="card card-body" style="max-width: 600px;">
+  <form method="POST" action="{{ url_for('results') }}" novalidate>
+    {{ form.hidden_tag() }}  {# CSRF token required by Flask-WTF #}
+
+    {# Text / number / select fields: same pattern for each one #}
+    {% for field in [form.query, form.max_results, form.min_year, form.sort_by] %}
+      <div class="mb-3">
+        {{ field.label(class="form-label") }}
+        {{ field(class="form-control" if field.type != "SelectField" else "form-select") }}
+        {% for error in field.errors %}
+          <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+
+    {# Checkbox field #}
+    <div class="form-check mb-3">
+      {{ form.only_with_cover(class="form-check-input") }}
+      {{ form.only_with_cover.label(class="form-check-label") }}
+    </div>
+
+    {{ form.submit(class="btn btn-primary") }}
+  </form>
+</div>
+{% endblock %}
