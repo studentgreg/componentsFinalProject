@@ -109,6 +109,4 @@ This project currently uses the Open Library Search API, which is free and does 
 ## License
 
 This project does not currently include a license file.
-```
-
-If you want, I can also tailor it to sound more polished, more academic, or more GitHub-ready for a class submission.
+``
